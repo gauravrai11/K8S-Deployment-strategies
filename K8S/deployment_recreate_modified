@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: studentappdeploy
+
+spec:
+  replicas: 10
+
+  strategy:
+    type: Recreate
+    
+
+  selector:
+    matchLabels:
+      app: studentapp
+
+  template:
+    metadata:
+      labels:
+        app: studentapp
+
+    spec:
+      containers:
+      - name: studentappcont
+        image: gauravrai11/student-app:v1
+        ports:
+        - containerPort: 80
